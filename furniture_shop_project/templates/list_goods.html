@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Список товаров</h1>
+    <ul class="list-group mt-4">
+        {% for good in goods %}
+            <li class="list-group-item">
+                <div class="good-info">
+                    <strong>{{ good.title }}</strong> - {{ good.price }} руб.; Общий вес: {{ good.mass }} кг
+                    <br>
+                    <em>{{ good.description }}</em>
+                </div>
+                <div class="good-actions">
+                    {% if is_manager %}
+                        <a href="{% url 'update_good' good.id_good %}" class="btn btn-primary">Редактировать</a>
+                        <a href="{% url 'delete_good' good.id_good %}" class="btn btn-danger">Удалить</a>
+                    {% endif %}
+                    {% if is_client %}
+                        <a href="{% url 'create_order' id_good=good.id_good %}" class="btn btn-success">Заказать</a>
+                    {% endif %}
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    {% if is_manager %}
+        <a href="{% url 'insert_good' %}" class="btn btn-success mt-4">Добавить товар</a>
+    {% endif %}
+</div>
+{% endblock %}

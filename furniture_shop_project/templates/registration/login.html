@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="access-denied-container">
+    <h1 class="access-denied-title">Похоже, вы пытаетесь получить доступ к странице, предназначенной для менеджеров!</h1>
+    <h2 class="login-title">Вход</h2>
+    <form method="post" class="login-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="button login-button">Войти</button>
+    </form>
+    <p><a href="{% url 'register' %}" class="button register-button">Зарегистрироваться</a></p>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Последние заказы{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Последние заказы</h1>
+    <ul class="list-group mt-4">
+        {% for order in orders %}
+            <li class="list-group-item">
+                <strong>Заказ №{{ order.id_order }}</strong><br>
+                Клиент: {{ order.id_client }}<br>
+                Товар: {{ order.id_good }}<br>
+                Количество: {{ order.quantity }}<br>
+                Общая стоимость: {{ order.total }}<br>
+                Дата: {{ order.data }}<br>
+                Способ доставки: {{ order.delivery }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

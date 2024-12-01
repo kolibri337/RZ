@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Подтверждение заказа</h1>
+    <p><strong>Товар:</strong> {{ order.id_good.title }}</p>
+    <p><strong>Количество:</strong> {{ order.quantity }}</p>
+    <p><strong>Способ доставки:</strong> {{ order.delivery }}</p>
+    <p><strong>Общая стоимость:</strong> {{ order.total }}</p>
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        <button type="submit" name="confirm" class="btn btn-success">Подтвердить заказ</button>
+        <button type="submit" name="cancel" class="btn btn-danger">Отменить заказ</button>
+    </form>
+</div>
+{% endblock %}
